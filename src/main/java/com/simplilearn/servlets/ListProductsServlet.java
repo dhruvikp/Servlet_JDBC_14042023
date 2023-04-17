@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,6 +38,8 @@ public class ListProductsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+
 		PrintWriter pw = response.getWriter();
 		pw.println("<html><body>");
 		pw.println("<table>");
@@ -62,6 +65,16 @@ public class ListProductsServlet extends HttpServlet {
 
 			// STEP 4: Execute Query
 			ResultSet rs = stmt.executeQuery("select * from eproduct");
+			
+			
+			// STEP 4: Execute Parameterized query
+			/*
+			 * PreparedStatement preparedStatement =
+			 * con.prepareStatement("insert into eproduct values (?,?,?)");
+			 * preparedStatement.setInt(1, 7); preparedStatement.setString(2,
+			 * "Simplilearn"); preparedStatement.setDate(3, new Date());
+			 */
+			
 
 			// STEP 5: Iterate Resultset
 			while (rs.next()) {
